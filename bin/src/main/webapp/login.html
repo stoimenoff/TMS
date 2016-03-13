@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="/TMS/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/TMS/webjars/angularjs/1.5.0/angular.min.js"></script>
+    
+</head>
+<body>
+
+	<h2>Login page</h2>
+
+	<form action="login" method="get">
+		<br>
+		User name: <input type="text" name="userName" /> <br> <br>
+		Password: <input type="password" name="userPassword" /> <br> <br>
+		<input type="submit" />
+	</form>
+	
+	<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+		
+		<!--  Review Form -->
+		<h4>Submit a Review</h4>
+		<fieldset class="form-group">
+		  <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required >
+		    <option value="">Rate the Product</option>
+		  </select>
+		</fieldset>
+		<fieldset class="form-group">
+		  <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review" rows="" cols=""></textarea>
+		</fieldset>
+		<fieldset class="form-group">
+		  <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
+		</fieldset>
+		<fieldset class="form-group">
+		  <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+		</fieldset>
+	</form>
+</body>
+</html>

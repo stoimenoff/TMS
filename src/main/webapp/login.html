@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="/TMS/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/TMS/webjars/angularjs/1.5.0/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    
+</head>
+<body>
+
+	<h2>Login page</h2>
+
+	<form action="login" method="get">
+		<br>
+		User name: <input type="text" name="userName" /> <br> <br>
+		Password: <input type="password" name="userPassword" /> <br> <br>
+		<input type="submit" />
+	</form>
+	
+	<section ng-app="loginApp">
+	
+	<form name="loginForm" ng-controller="LoginController as loginCtrl" ng-submit="loginForm.$valid && loginCtrl.sendLoginRequest()" novalidate>
+		<h4>Login</h4>
+	
+		<fieldset class="form-group">
+		  <input type="text" ng-model="loginCtrl.user.userName" class="form-control" title="Username" required />
+		</fieldset>
+		<fieldset class="form-group">
+		  <input ng-model="loginCtrl.user.userPassword" type="password" class="form-control" title="Password" required />
+		</fieldset>
+		<fieldset class="form-group">
+		  <input type="submit" class="btn btn-primary pull-right" value="Login" />
+		</fieldset>
+	</form>
+	
+	</section>
+	
+</body>
+</html>
