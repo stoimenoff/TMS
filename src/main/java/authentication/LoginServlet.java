@@ -1,11 +1,7 @@
 package authentication;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.net.ssl.SSLEngineResult.Status;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import accounts.Registrator;
 import accounts.User;
 
 /**
@@ -53,21 +48,13 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//StringBuilder body = new StringBuilder();
+
 		String body = request.getReader().lines()
-			    .reduce("", (accumulator, actual) -> accumulator + actual);
-		/*
-		try(BufferedReader reader = request.getReader()) {
-			String line;
-			while((line = reader.readLine()) != null) {
-				body.append(line);
-			}
-		}
-		*/
-		System.out.println("body " + body);
+				.reduce("", (accumulator, actual) -> accumulator + actual);
+
 		Gson gson = new Gson();
 		User loggedUser = gson.fromJson(body.toString(), User.class);
-		
+
 		if (UserAuthenticator.authenticate(loggedUser)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", loggedUser);

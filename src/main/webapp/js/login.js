@@ -11,14 +11,13 @@
 	    	    method: "POST",
 	    	    data: this.user
 	    	}).then(function successCallback(response) {
-	    	    // this callback will be called asynchronously
-	    	    // when the response is available
-	    		console.log(self.user);
+	    	    
 	    		
-	    		$window.location.reload();
-	    		
-	    		console.log("s");
-	    		//console.log(response);
+	    		if($window.location.pathname.indexOf("login") > -1) {
+	    			$window.location = "/TMS/dashboard.html";
+	    		} else {
+	    			$window.location.reload();
+	    		}
 	    		
 	    	  }, function errorCallback(response) {
 	    		self.unsuccessful = true;
