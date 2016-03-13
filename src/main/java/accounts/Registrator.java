@@ -13,7 +13,7 @@ public final class Registrator {
 	}
 	
 	public static void register(User user) {
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoClient mongoClient = new MongoClient("localhost" , 27017);
 		
 		MongoDatabase db = mongoClient.getDatabase("tmsDB");
 		MongoCollection<Document> usersColl = db.getCollection("users");

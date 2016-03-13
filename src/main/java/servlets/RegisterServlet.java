@@ -20,10 +20,11 @@ import accounts.User;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
     public RegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -32,8 +33,9 @@ public class RegisterServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/register.html");
 		dispatcher.forward(request, response);
 	}
 
@@ -44,21 +46,16 @@ public class RegisterServlet extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
 		
-		String forwardAddres = "/login.html";
-		
 		if (userName != null && userPassword != null) {
 			// register user to DB
 			User registredUser = new User(userName, userPassword);
 			Registrator.register(registredUser);
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("registration", true);
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardAddres);
-		dispatcher.forward(request, response);
+		//RequestDispatcher dispatcher = request.getRequestDispatcher(forwardAddres);
+		//dispatcher.forward(request, response);
 		
-		//response.sendRedirect("/TaskManagementSystem/index.jsp");
+		response.sendRedirect("/TMS/login.html");
 		
 	}
 

@@ -1,9 +1,9 @@
 package accounts;
 
 public class User {
-	
+
 	private static long ID = 0;
-	
+
 	private final String username;
 	private final String password;
 	private final long id;
@@ -26,5 +26,10 @@ public class User {
 	public long getId() {
 		return id;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + "]";
+	}
+
 }

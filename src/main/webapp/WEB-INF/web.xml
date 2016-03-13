@@ -4,6 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <filter>
+  	<filter-name>login</filter-name>
+  	<filter-class>authentication.LoginFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>login</filter-name>
+  	<url-pattern>/dashboard.html</url-pattern>
+  </filter-mapping>
+  
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
   	<display-name>LoginServlet</display-name>
@@ -24,8 +35,9 @@
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+  
   <welcome-file-list>
-	<welcome-file>/index.jsp</welcome-file>
 	<welcome-file>/index.html</welcome-file>
-</welcome-file-list>
+  </welcome-file-list>
+  
 </web-app>

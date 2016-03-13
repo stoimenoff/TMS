@@ -1,7 +1,9 @@
-package accounts;
+package authentication;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
+
+import accounts.User;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -14,7 +16,12 @@ public final class UserAuthenticator {
 	}
 	
 	public static boolean authenticate(User user) {
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		
+		if(user.getPassword() == null || user.getUsername() == null) {
+			return false;
+		}
+		
+		MongoClient mongoClient = new MongoClient("localhost" , 27017);
 		
 		MongoDatabase db = mongoClient.getDatabase("tmsDB");
 		MongoCollection<Document> usersColl = db.getCollection("users");
