@@ -1,20 +1,25 @@
 (function() {
 	var app = angular.module('registerApp', []);
 
-	app.controller("RegisterController", [ '$http', '$window',
+	app.controller("RegisterController", [
+			'$http',
+			'$window',
 			function($http, $window) {
-				var self = this;
 				this.user = {};
 				this.passwordCheck;
 				this.sendRegisterRequest = function() {
-					console.log("send r");
 					// TODO some checks
 					if (this.passwordCheck == this.user.password) {
-						// TODO encrypt user password
+						var hash_bits = sjcl.hash.sha256.hash(this.user.password);
+						var passhash = sjcl.codec.hex.fromBits(hash_bits);
+
+						var requestData = (JSON.parse(JSON.stringify(this.user)));
+						requestData.password = passhash;
+						console.log(requestData);
 						$http({
 							url : "/TMS/register",
 							method : "POST",
-							data : this.user
+							data : requestData
 						}).then(function successCallback(response) {
 							console.log(response);
 							$window.location = "/TMS/login";
@@ -23,6 +28,8 @@
 							// TODO display reason
 							console.log(response);
 						});
+					} else {
+						// TODO display password mismatch message
 					}
 				};
 			} ]);
