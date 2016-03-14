@@ -1,25 +1,25 @@
 @CHARSET "UTF-8";
 /*    --------------------------------------------------
-	:: Login Section
+	:: Form Section
 	-------------------------------------------------- */
-#login {
+#form {
     padding-top: 50px
 }
-#login .form-wrap {
+#form .form-wrap {
     width: 30%;
     margin: 0 auto;
 }
-#login h1 {
+#form h1 {
     color: #1fa67b;
     font-size: 18px;
     text-align: center;
     font-weight: bold;
     padding-bottom: 20px;
 }
-#login .form-group {
+#form .form-group {
     margin-bottom: 25px;
 }
-#login .checkbox {
+#form .checkbox {
     margin-bottom: 20px;
     position: relative;
     -webkit-user-select: none;
@@ -28,7 +28,7 @@
     -o-user-select: none;
     user-select: none;
 }
-#login .checkbox.show:before {
+#form .checkbox.show:before {
     content: '\e013';
     color: #1fa67b;
     font-size: 17px;
@@ -37,7 +37,7 @@
     pointer-events: none;
     font-family: 'Glyphicons Halflings';
 }
-#login .checkbox .character-checkbox {
+#form .checkbox .character-checkbox {
     width: 25px;
     height: 25px;
     cursor: pointer;
@@ -46,19 +46,27 @@
     vertical-align: middle;
     display: inline-block;
 }
-#login .checkbox .label {
+#form .checkbox .label {
     color: #6d6d6d;
     font-size: 13px;
     font-weight: normal;
 }
-#login .btn.btn-custom {
+#form .btn.btn-custom {
     font-size: 14px;
 	margin-bottom: 20px;
 }
-#login .forget {
+#form .forget {
     font-size: 13px;
 	text-align: center;
 	display: block;
+}
+
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
 }
 
 /*    --------------------------------------------------

@@ -1,4 +1,4 @@
-package authentication;
+package registration;
 
 import java.io.IOException;
 
@@ -14,17 +14,18 @@ import accounts.User;
 import accounts.UserUtils;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class RegisterServlet
  */
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+
+	public RegisterServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,10 +34,11 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/login.html");
+				.getRequestDispatcher("/register.html");
 		dispatcher.forward(request, response);
 	}
 
@@ -44,20 +46,23 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		User loggedUser = UserUtils.getUser(request);
-
-		if (UserAuthenticator.authenticate(loggedUser)) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", loggedUser);
-			response.setStatus(HttpServletResponse.SC_OK);
-		} else {
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		//extract and validate user
+		User registredUser = UserUtils.getUser(request);
+		if (!UserUtils.validateUserData(registredUser)) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("User information wrong!");
+			return;
 		}
-
+		// register user to DB
+		try {
+			Registrator.register(registredUser);
+			response.setStatus(HttpServletResponse.SC_OK);
+		} catch (UsernameAlreadyInUseException | EmailAlreadyInUseException e) {
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			response.getWriter().write("Username or email in use!");
+		}
 	}
 
 }
