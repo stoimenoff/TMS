@@ -1,9 +1,0 @@
-/home/stoimenoff/Desktop/TMS/src/main/java/registration/UsernameAlreadyInUseException.java
-/home/stoimenoff/Desktop/TMS/src/main/java/authentication/LoginServlet.java
-/home/stoimenoff/Desktop/TMS/src/main/java/registration/RegisterServlet.java
-/home/stoimenoff/Desktop/TMS/src/main/java/authentication/LoginFilter.java
-/home/stoimenoff/Desktop/TMS/src/main/java/registration/Registrator.java
-/home/stoimenoff/Desktop/TMS/src/main/java/accounts/User.java
-/home/stoimenoff/Desktop/TMS/src/main/java/authentication/UserAuthenticator.java
-/home/stoimenoff/Desktop/TMS/src/main/java/accounts/UserUtils.java
-/home/stoimenoff/Desktop/TMS/src/main/java/registration/EmailAlreadyInUseException.java
