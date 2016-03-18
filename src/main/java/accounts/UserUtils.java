@@ -20,8 +20,8 @@ public final class UserUtils {
 		mongoUser.append("username", user.getUsername());
 		mongoUser.append("password", user.getPassword());
 		mongoUser.append("email", user.getEmail());
-		mongoUser.append("Firstname", user.getFirstname());
-		mongoUser.append("Lastname", user.getLastname());
+		mongoUser.append("firstname", user.getFirstname());
+		mongoUser.append("lastname", user.getLastname());
 		return mongoUser;
 	}
 
