@@ -9,7 +9,12 @@
   	<filter-name>login</filter-name>
   	<filter-class>authentication.LoginFilter</filter-class>
   </filter>
+  <filter>
+  	<filter-name>logout</filter-name>
+  	<filter-class>accounts.LogoutFilter</filter-class>
+  </filter>
   
+  <!-- Login filter mappings -->
   <filter-mapping>
   	<filter-name>login</filter-name>
   	<url-pattern>/dashboard.html</url-pattern>
@@ -22,33 +27,31 @@
   	<filter-name>login</filter-name>
   	<url-pattern>/profile</url-pattern>
   </filter-mapping>
-  
-  <servlet>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<display-name>LoginServlet</display-name>
-  	<description></description>
-  	<servlet-class>servlets.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>RegisterServlet</servlet-name>
-  	<display-name>RegisterServlet</display-name>
-  	<description></description>
-  	<servlet-class>servlets.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/LoginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RegisterServlet</servlet-name>
-  	<url-pattern>/RegisterServlet</url-pattern>
-  </servlet-mapping>
+  <!-- Logout filter mappings -->
+  <filter-mapping>
+  	<filter-name>logout</filter-name>
+  	<url-pattern>/login</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>logout</filter-name>
+  	<url-pattern>/login.html</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>logout</filter-name>
+  	<url-pattern>/register</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>logout</filter-name>
+  	<url-pattern>/register.html</url-pattern>
+  </filter-mapping>
   
   <welcome-file-list>
 	<welcome-file>/index.html</welcome-file>
   </welcome-file-list>
+  
   <error-page>
       <error-code>404</error-code>
       <location>/notfound.html</location>
-</error-page>
+  </error-page>
+
 </web-app>
