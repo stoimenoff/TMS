@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Profile</title>
+<link rel="stylesheet" type="text/css"
+	href="/TMS/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script type="text/javascript" src="/TMS/webjars/angularjs/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+	<section id="profile" ng-app="profile">
+		<div class="container" ng-controller="ProfileController as profCtrl">
+	    	<h4 ng-bind="user.firstname"></h4>
+	    	<h4 ng-bind="user.lastname"></h4>
+	    	<h4 ng-bind="user.username"></h4>
+			<h4 ng-bind="user.email"></h4>
+			<button ng-click="profCtrl.logOut()">Log out</button>
+		</div>
+	</section>
+	
+	<script type="text/javascript" src="js/profile.js"></script>
+</body>
+</html>

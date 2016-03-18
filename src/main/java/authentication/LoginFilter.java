@@ -23,9 +23,11 @@ public class LoginFilter implements Filter {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(false);
+		//System.out.println(session);
 		if (session == null) {
 			RequestDispatcher dispatcher = httpRequest.getRequestDispatcher("/login.html");
 			dispatcher.forward(request, response);
+			return;
 		}
 		filterChain.doFilter(request, response);
 	}

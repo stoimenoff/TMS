@@ -1,4 +1,4 @@
-package registration;
+package accounts;
 
 import java.io.IOException;
 
@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bson.Document;
+
 import accounts.User;
-import accounts.UserUtils;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class LoginServlet
  */
 
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/profile")
+public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-
-	public RegisterServlet() {
+	public ProfileServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,11 +33,10 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/register.html");
+				.getRequestDispatcher("/profile.html");
 		dispatcher.forward(request, response);
 	}
 
@@ -45,23 +44,21 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//extract and validate user
-		User registredUser = UserUtils.getUser(request);
-		if (!UserUtils.validateUserData(registredUser)) {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			response.getWriter().write("User information wrong!");
-			return;
-		}
-		// register user to DB
+		
+		User loggedUser = (User) request.getSession().getAttribute("user");
+		Document userInfo = null;
 		try {
-			Registrator.register(registredUser);
-			response.setStatus(HttpServletResponse.SC_OK);
-		} catch (UsernameAlreadyInUseException | EmailAlreadyInUseException e) {
-			response.setStatus(HttpServletResponse.SC_CONFLICT);
-			response.getWriter().write("Username or email in use!");
+			userInfo = DataBase.getInstance().getUserData(loggedUser);
+			response.setContentType("application/json");
+			response.getWriter().write(userInfo.toJson());
+			
+		} catch (NoSuchUserException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
+
 	}
 
 }
