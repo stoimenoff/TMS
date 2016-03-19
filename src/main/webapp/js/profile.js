@@ -23,7 +23,7 @@
 						// TODO
 						console.log(response);
 					});
-				}
+				};
 
 			} ]);
 

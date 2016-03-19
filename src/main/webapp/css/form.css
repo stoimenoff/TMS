@@ -11,6 +11,13 @@
 }
 #form h1 {
     color: #1fa67b;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#form .error {
+	color: red;
     font-size: 18px;
     text-align: center;
     font-weight: bold;

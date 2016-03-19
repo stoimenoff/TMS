@@ -60,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} catch (UsernameAlreadyInUseException | EmailAlreadyInUseException e) {
 			response.setStatus(HttpServletResponse.SC_CONFLICT);
-			response.getWriter().write("Username or email in use!");
+			response.getWriter().write("Email or username in use!");
 		}
 	}
 
