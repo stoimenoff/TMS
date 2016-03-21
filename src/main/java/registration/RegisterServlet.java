@@ -58,9 +58,12 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			Registrator.register(registredUser);
 			response.setStatus(HttpServletResponse.SC_OK);
-		} catch (UsernameAlreadyInUseException | EmailAlreadyInUseException e) {
+		} catch (UsernameAlreadyInUseException e) {
 			response.setStatus(HttpServletResponse.SC_CONFLICT);
-			response.getWriter().write("Email or username in use!");
+			response.getWriter().write("Sorry, the username is not free!");
+		} catch (EmailAlreadyInUseException e) {
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			response.getWriter().write("This email is already registred in our system!");
 		}
 	}
 

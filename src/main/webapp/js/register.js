@@ -4,7 +4,10 @@
 	app.controller("RegisterController", [
 			'$http',
 			'$window',
-			function($http, $window) {
+			'$scope',
+			function($http, $window, $scope) {
+				$scope.errorMessage = "";
+				$scope.regError = false;
 				this.user = {};
 				this.passwordCheck;
 				this.sendRegisterRequest = function() {
@@ -25,11 +28,12 @@
 							$window.location = "/TMS/login";
 
 						}, function errorCallback(response) {
-							// TODO display reason
-							console.log(response);
+							$scope.regError = true;
+							$scope.errorMessage = response.data;
 						});
 					} else {
-						// TODO display password mismatch message
+						$scope.regError = true;
+						$scope.errorMessage = "Passwords do not match!";
 					}
 				};
 			} ]);
